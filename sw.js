@@ -1,12 +1,18 @@
 // Service Worker for Chess App PWA
 const CACHE_NAME = 'chess-app-v1';
 
-// Detect basePath from current location
+// Detect basePath dynamically from current location
+// This works for any deployment path (e.g., /ChessApp, /my-app, /, etc.)
 const getBasePath = () => {
-  const path = self.location.pathname;
-  if (path.startsWith('/ChessApp')) {
-    return '/ChessApp';
+  const pathname = self.location.pathname;
+  // Extract the base path - everything before the service worker file
+  // Service worker is typically at /basePath/sw.js or /sw.js
+  const swPath = self.location.pathname;
+  const basePathMatch = swPath.match(/^(.+)\/sw\.js$/);
+  if (basePathMatch && basePathMatch[1]) {
+    return basePathMatch[1];
   }
+  // If sw.js is at root, no basePath
   return '';
 };
 
