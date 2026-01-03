@@ -2,48 +2,47 @@
   "name": "Chess App",
   "short_name": "Chess",
   "description": "A chess game with standard notation support",
-  "start_url": "/",
+  "start_url": "/ChessApp/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#7c3aed",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icons/favicon-16.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/favicon-16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/icons/favicon-32.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/favicon-32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/icons/iPhone_120.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/iPhone_120.png",
       "sizes": "120x120",
       "type": "image/png"
     },
     {
-      "src": "/icons/iPhone_180.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/iPhone_180.png",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "/icons/iPad_152.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/iPad_152.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "/icons/iPad_167.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/iPad_167.png",
       "sizes": "167x167",
       "type": "image/png"
     },
     {
-      "src": "/icons/AppStore_1024.png",
+      "src": "/ChessApp/ChessApp/ChessApp/icons/AppStore_1024.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ]
 }
-
