@@ -58,6 +58,39 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  const isHTML = event.request.headers.get('accept')?.includes('text/html') || 
+                 url.pathname === basePath + '/' || 
+                 url.pathname === basePath + '/index.html' ||
+                 (!basePath && (url.pathname === '/' || url.pathname === '/index.html'));
+  
+  // For HTML pages, use network-first strategy to always get latest version
+  // This ensures new builds with new CSS/JS hashes are fetched immediately
+  if (isHTML) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Cache the new HTML for offline use
+          if (response.ok) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // If network fails, try cache as fallback
+          return caches.match(event.request)
+            .then((cachedResponse) => {
+              return cachedResponse || new Response('Offline', { status: 503 });
+            });
+        })
+    );
+    return;
+  }
+  
+  // For other resources (CSS, JS, images), use cache-first strategy
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
