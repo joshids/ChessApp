@@ -1,580 +1,1156 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/ChessApp/_next/static/css/c0f35ca63620b219.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/ChessApp/_next/static/chunks/webpack-9fd380a7ff604136.js"/><script src="/ChessApp/_next/static/chunks/fd9d1056-1f1f859026f5f0fa.js" async=""></script><script src="/ChessApp/_next/static/chunks/117-126b52f8ebd1fa50.js" async=""></script><script src="/ChessApp/_next/static/chunks/main-app-653bf5859d3efabc.js" async=""></script><script src="/ChessApp/_next/static/chunks/648-a9289209d4fa6a8d.js" async=""></script><script src="/ChessApp/_next/static/chunks/593-57c949872ea70626.js" async=""></script><script src="/ChessApp/_next/static/chunks/app/page-7749e48c7e566212.js" async=""></script><script src="/ChessApp/_next/static/chunks/app/layout-7f73176d21ad70ac.js" async=""></script><script src="/ChessApp/_next/static/chunks/app/error-e38ab83e6fb314d2.js" async=""></script><title>Chess App</title><meta name="description" content="A chess game with standard notation support"/><link rel="manifest" href="/ChessApp/icons/manifest.json" crossorigin="use-credentials"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-title" content="Chess App"/><meta name="apple-mobile-web-app-status-bar-style" content="default"/><link rel="shortcut icon" href="/ChessApp/icons/favicon-32.png"/><link rel="icon" href="/ChessApp/icons/favicon-16.png" sizes="16x16" type="image/png"/><link rel="icon" href="/ChessApp/icons/favicon-32.png" sizes="32x32" type="image/png"/><link rel="apple-touch-icon" href="/ChessApp/icons/apple-touch-icon.png"/><script src="/ChessApp/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script></head><body><main class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4"><div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 md:p-8 max-w-6xl w-full"><div class="flex flex-col lg:flex-row gap-6"><div class="flex-1"><div class="mb-4"><div class="flex items-center justify-center gap-3 mb-2"><h1 class="text-3xl font-bold text-center text-gray-900 dark:text-white">Chess Game</h1><a class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors" title="Help &amp; Instructions" aria-label="Help &amp; Instructions" href="/ChessApp/help"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></a></div><p class="text-center text-gray-600 dark:text-gray-400 text-sm">Current turn: <span class="font-semibold">White</span></p></div><div class="mb-2"><div class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Black&#x27;s Lost Pieces:</div><div class="min-h-[3rem] flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm">No pieces lost</div></div><div class="flex flex-col items-center"><div class="flex mb-1"><div class="w-12 md:w-16"></div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">a</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">b</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">c</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">d</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">e</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">f</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">g</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">h</div><div class="w-12 md:w-16"></div></div><div class="flex"><div class="flex flex-col justify-around pr-1"><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">8</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">7</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">6</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">5</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">4</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">3</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">2</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">1</div></div><div class="grid grid-cols-8 border-4 border-gray-800 dark:border-gray-600 shadow-lg relative"><div data-square="a8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/ChessApp/_next/static/css/5b5486a38c538a7b.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/ChessApp/_next/static/chunks/webpack-9fd380a7ff604136.js"/><script src="/ChessApp/_next/static/chunks/fd9d1056-b11b2651f33aae7f.js" async=""></script><script src="/ChessApp/_next/static/chunks/117-5eef35bd5634c384.js" async=""></script><script src="/ChessApp/_next/static/chunks/main-app-653bf5859d3efabc.js" async=""></script><script src="/ChessApp/_next/static/chunks/648-f70bf7e98f11bfdc.js" async=""></script><script src="/ChessApp/_next/static/chunks/673-630881f48a8c3166.js" async=""></script><script src="/ChessApp/_next/static/chunks/app/page-093b58a753a1c93a.js" async=""></script><script src="/ChessApp/_next/static/chunks/app/layout-94d865a4b5f1ef6e.js" async=""></script><script src="/ChessApp/_next/static/chunks/app/error-bbac6c89a70fb814.js" async=""></script><title>Chess App</title><meta name="description" content="A chess game with standard notation support"/><link rel="manifest" href="/ChessApp/icons/manifest.json" crossorigin="use-credentials"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-title" content="Chess App"/><meta name="apple-mobile-web-app-status-bar-style" content="default"/><link rel="shortcut icon" href="/ChessApp/icons/favicon-32.png"/><link rel="icon" href="/ChessApp/icons/favicon-16.png" sizes="16x16" type="image/png"/><link rel="icon" href="/ChessApp/icons/favicon-32.png" sizes="32x32" type="image/png"/><link rel="apple-touch-icon" href="/ChessApp/icons/apple-touch-icon.png"/><script src="/ChessApp/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script></head><body><main class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4"><div class="md:hidden fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col"><div class="flex items-center justify-between p-3 bg-white/10 dark:bg-slate-800/10 backdrop-blur-sm"><button class="p-2 rounded-lg bg-white/20 dark:bg-slate-700/20 hover:bg-white/30 dark:hover:bg-slate-700/30 transition-colors" aria-label="Open menu"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button><div class="flex items-center gap-2"><h1 class="text-lg font-bold text-white">Chess Game</h1><a class="p-1.5 rounded-lg bg-white/20 dark:bg-slate-700/20 hover:bg-white/30 dark:hover:bg-slate-700/30 transition-colors" title="Help &amp; Instructions" aria-label="Help &amp; Instructions" href="/ChessApp/help"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></a></div><button class="p-2 rounded-lg bg-white/20 dark:bg-slate-700/20 hover:bg-white/30 dark:hover:bg-slate-700/30 transition-colors" aria-label="Open game info"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg></button></div><div class="flex-1 flex items-center justify-center p-2 overflow-hidden transition-transform duration-300 ease-out" style="transform:translateX(0)"><div class="w-full h-full flex items-center justify-center"><div class="w-full max-w-full aspect-square"><div class="flex flex-col items-center w-full"><div class="flex mb-1 w-full"><div class="w-6 md:w-16 flex-shrink-0"></div><div class="flex-1 grid grid-cols-8"><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">a</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">b</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">c</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">d</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">e</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">f</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">g</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">h</div></div><div class="w-6 md:w-16 flex-shrink-0"></div></div><div class="flex w-full"><div class="flex flex-col justify-around pr-1 w-6 md:w-16 flex-shrink-0"><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">8</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">7</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">6</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">5</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">4</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">3</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">2</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">1</div></div><div class="flex-1 aspect-square max-w-full"><div class="grid grid-cols-8 grid-rows-8 h-full w-full border-4 border-gray-800 dark:border-gray-600 shadow-lg relative"><div data-square="a8" data-source="false" data-destination="false" class="
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♜</span></div><div data-square="b8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♞</span></div><div data-square="c8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♝</span></div><div data-square="d8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♛</span></div><div data-square="e8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♚</span></div><div data-square="f8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♝</span></div><div data-square="g8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♞</span></div><div data-square="h8" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♜</span></div><div data-square="a7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="b7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="c7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="d7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="e7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="f7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="g7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="h7" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="a6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h6" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h5" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h4" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h3" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="b2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="c2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="d2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="e2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="f2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="g2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="h2" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="a1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♖</span></div><div data-square="b1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♘</span></div><div data-square="c1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♗</span></div><div data-square="d1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♕</span></div><div data-square="e1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♔</span></div><div data-square="f1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♗</span></div><div data-square="g1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-gray-300 dark:bg-gray-400
         transition-colors duration-200
         relative
         cursor-pointer
       " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♘</span></div><div data-square="h1" data-source="false" data-destination="false" class="
-        w-12 h-12 md:w-16 md:h-16
+        w-full h-full
         flex items-center justify-center
-        text-2xl md:text-4xl
+        text-xl sm:text-2xl md:text-4xl
         select-none
         bg-white dark:bg-gray-100
         transition-colors duration-200
         relative
         cursor-pointer
-      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♖</span></div></div><div class="flex flex-col justify-around pl-1"><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">8</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">7</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">6</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">5</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">4</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">3</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">2</div><div class="h-12 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">1</div></div></div><div class="flex mt-1"><div class="w-12 md:w-16"></div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">a</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">b</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">c</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">d</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">e</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">f</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">g</div><div class="w-12 md:w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-300">h</div><div class="w-12 md:w-16"></div></div></div><div class="mt-2"><div class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Yellow&#x27;s Lost Pieces:</div><div class="min-h-[3rem] flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm">No pieces lost</div></div><div class="mt-4"></div></div><div class="lg:w-80 space-y-4"><div class="flex gap-2 mb-2"><button class="flex-1 py-2 px-4 rounded-lg font-semibold transition-colors duration-200 bg-blue-600 text-white">Play</button><button class="flex-1 py-2 px-4 rounded-lg font-semibold transition-colors duration-200 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300">Replay</button></div><div class="bg-slate-100 dark:bg-slate-700 rounded-lg p-4"><h2 class="font-semibold text-gray-900 dark:text-white mb-3">Make a Move</h2><form class="space-y-3"><div><input type="text" placeholder="e.g., e2e4, Nf3, O-O, Qd1h5" class="
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♖</span></div></div></div><div class="flex flex-col justify-around pl-1 w-6 md:w-16 flex-shrink-0"><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">8</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">7</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">6</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">5</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">4</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">3</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">2</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">1</div></div></div><div class="flex mt-1 w-full"><div class="w-6 md:w-16 flex-shrink-0"></div><div class="flex-1 grid grid-cols-8"><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">a</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">b</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">c</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">d</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">e</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">f</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">g</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">h</div></div><div class="w-6 md:w-16 flex-shrink-0"></div></div></div></div></div></div><div class="p-3 bg-white/10 dark:bg-slate-800/10 backdrop-blur-sm text-center"><p class="text-sm text-white">Current turn: <span class="font-semibold">White</span></p></div></div><div class="hidden md:block bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 lg:p-8 max-w-6xl w-full"><div class="flex flex-col lg:flex-row gap-6"><div class="flex-1"><div class="mb-4"><div class="flex items-center justify-center gap-3 mb-2"><h1 class="text-3xl font-bold text-center text-gray-900 dark:text-white">Chess Game</h1><a class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors" title="Help &amp; Instructions" aria-label="Help &amp; Instructions" href="/ChessApp/help"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></a></div><p class="text-center text-gray-600 dark:text-gray-400 text-sm">Current turn: <span class="font-semibold">White</span></p></div><div class="mb-2"><div class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Black&#x27;s Lost Pieces:</div><div class="min-h-[3rem] flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm">No pieces lost</div></div><div class="flex flex-col items-center w-full"><div class="flex mb-1 w-full"><div class="w-6 md:w-16 flex-shrink-0"></div><div class="flex-1 grid grid-cols-8"><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">a</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">b</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">c</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">d</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">e</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">f</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">g</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">h</div></div><div class="w-6 md:w-16 flex-shrink-0"></div></div><div class="flex w-full"><div class="flex flex-col justify-around pr-1 w-6 md:w-16 flex-shrink-0"><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">8</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">7</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">6</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">5</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">4</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">3</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">2</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">1</div></div><div class="flex-1 aspect-square max-w-full"><div class="grid grid-cols-8 grid-rows-8 h-full w-full border-4 border-gray-800 dark:border-gray-600 shadow-lg relative"><div data-square="a8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♜</span></div><div data-square="b8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♞</span></div><div data-square="c8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♝</span></div><div data-square="d8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♛</span></div><div data-square="e8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♚</span></div><div data-square="f8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♝</span></div><div data-square="g8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♞</span></div><div data-square="h8" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♜</span></div><div data-square="a7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="b7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="c7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="d7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="e7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="f7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="g7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="h7" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-gray-900 drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♟</span></div><div data-square="a6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h6" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h5" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h4" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="b3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="c3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="d3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="e3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="f3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="g3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="h3" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"></div><div data-square="a2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="b2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="c2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="d2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="e2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="f2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="g2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="h2" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♙</span></div><div data-square="a1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♖</span></div><div data-square="b1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♘</span></div><div data-square="c1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♗</span></div><div data-square="d1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♕</span></div><div data-square="e1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♔</span></div><div data-square="f1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♗</span></div><div data-square="g1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-gray-300 dark:bg-gray-400
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♘</span></div><div data-square="h1" data-source="false" data-destination="false" class="
+        w-full h-full
+        flex items-center justify-center
+        text-xl sm:text-2xl md:text-4xl
+        select-none
+        bg-white dark:bg-gray-100
+        transition-colors duration-200
+        relative
+        cursor-pointer
+      " tabindex="0" style="background-image:none;box-shadow:none;touch-action:manipulation;opacity:0"><span class="text-yellow-500 [text-shadow:_-1px_-1px_0_rgb(0,0,0),_1px_-1px_0_rgb(0,0,0),_-1px_1px_0_rgb(0,0,0),_1px_1px_0_rgb(0,0,0)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style="position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;transform:none">♖</span></div></div></div><div class="flex flex-col justify-around pl-1 w-6 md:w-16 flex-shrink-0"><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">8</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">7</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">6</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">5</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">4</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">3</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">2</div><div class="h-full flex items-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">1</div></div></div><div class="flex mt-1 w-full"><div class="w-6 md:w-16 flex-shrink-0"></div><div class="flex-1 grid grid-cols-8"><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">a</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">b</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">c</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">d</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">e</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">f</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">g</div><div class="text-center text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">h</div></div><div class="w-6 md:w-16 flex-shrink-0"></div></div></div><div class="mt-2"><div class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Yellow&#x27;s Lost Pieces:</div><div class="min-h-[3rem] flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm">No pieces lost</div></div><div class="mt-4"></div></div><div class="lg:w-80 space-y-4"><div class="flex gap-2 mb-2"><button class="flex-1 py-2 px-4 rounded-lg font-semibold transition-colors duration-200 bg-blue-600 text-white">Play</button><button class="flex-1 py-2 px-4 rounded-lg font-semibold transition-colors duration-200 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300">Replay</button></div><div class="bg-slate-100 dark:bg-slate-700 rounded-lg p-4"><h2 class="font-semibold text-gray-900 dark:text-white mb-3">Make a Move</h2><form class="space-y-3"><div><input type="text" placeholder="e.g., e2e4, Nf3, O-O, Qd1h5" class="
               w-full px-4 py-2 rounded-lg border-2
               bg-white dark:bg-slate-600
               text-gray-900 dark:text-white
@@ -606,4 +1182,4 @@
             " tabindex="0"><div class="text-sm font-semibold text-gray-900 dark:text-white mb-1">Blue Orange/Teal</div><div class="flex gap-1 justify-center"><div class="w-4 h-4 rounded bg-blue-100 dark:bg-blue-200"></div><div class="w-4 h-4 rounded bg-blue-700 dark:bg-blue-800"></div></div><div class="flex gap-1 justify-center mt-1"><span class="text-xs text-orange-500">♔</span><span class="text-xs text-teal-700">♚</span></div></button><button class="
               p-3 rounded-lg border-2 transition-all duration-200
               border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-600 hover:border-blue-400
-            " tabindex="0"><div class="text-sm font-semibold text-gray-900 dark:text-white mb-1">Purple Gold</div><div class="flex gap-1 justify-center"><div class="w-4 h-4 rounded bg-purple-100 dark:bg-purple-200"></div><div class="w-4 h-4 rounded bg-purple-700 dark:bg-purple-800"></div></div><div class="flex gap-1 justify-center mt-1"><span class="text-xs text-yellow-400">♔</span><span class="text-xs text-gray-400">♚</span></div></button></div></div><div class="bg-slate-100 dark:bg-slate-700 rounded-lg p-4"><h2 class="font-semibold text-gray-900 dark:text-white mb-3">Animation Speed</h2><div class="space-y-2"><div class="flex items-center justify-between mb-2"><span class="text-sm text-gray-700 dark:text-gray-300">Speed</span><span class="text-sm font-semibold text-gray-900 dark:text-white">100<!-- -->%</span></div><input type="range" min="0" max="200" step="10" class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-blue-600" style="background:linear-gradient(to right, rgb(37, 99, 235) 0%, rgb(37, 99, 235) 50%, rgb(229, 231, 235) 50%, rgb(229, 231, 235) 100%)" value="100"/><div class="flex justify-between text-xs text-gray-500 dark:text-gray-400"><span>0%</span><span>100%</span><span>200%</span></div><p class="text-xs text-gray-600 dark:text-gray-400 mt-2">Normal speed</p></div></div><button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">Reset Game</button></div></div></div></main><script src="/ChessApp/_next/static/chunks/webpack-9fd380a7ff604136.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0]);self.__next_f.push([2,null])</script><script>self.__next_f.push([1,"1:HL[\"/ChessApp/_next/static/css/c0f35ca63620b219.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"2:I[2846,[],\"\"]\n4:I[9107,[],\"ClientPageRoot\"]\n5:I[406,[\"648\",\"static/chunks/648-a9289209d4fa6a8d.js\",\"593\",\"static/chunks/593-57c949872ea70626.js\",\"931\",\"static/chunks/app/page-7749e48c7e566212.js\"],\"default\",1]\n6:I[1454,[\"185\",\"static/chunks/app/layout-7f73176d21ad70ac.js\"],\"PWARegister\"]\n7:I[4707,[],\"\"]\n8:I[3490,[\"601\",\"static/chunks/app/error-e38ab83e6fb314d2.js\"],\"default\"]\n9:I[6423,[],\"\"]\nb:I[1060,[],\"\"]\nc:[]\n0:[\"$\",\"$L2\",null,{\"buildId\":\"1XMk0vZU7FEaWNHWXI8l3\",\"assetPrefix\":\"/ChessApp\",\"urlParts\":[\"\",\"\"],\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[[\"$L3\",[\"$\",\"$L4\",null,{\"props\":{\"params\":{},\"searchParams\":{}},\"Component\":\"$5\"}],null],null],null]},[[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/ChessApp/_next/static/css/c0f35ca63620b219.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L6\",null,{}],[\"$\",\"$L7\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$8\",\"errorStyles\":[],\"errorScripts\":[],\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center p-8 bg-slate-800 rounded-lg shadow-lg\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-2xl font-bold text-white mb-4\",\"children\":\"404 - Page Not Found\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-400 mb-4\",\"children\":\"The page you're looking for doesn't exist.\"}],[\"$\",\"a\",null,{\"href\":\"/\",\"className\":\"px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors inline-block\",\"children\":\"Go back home\"}]]}]}],\"notFoundStyles\":[]}]]}]}]],null],null],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Chess App\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"A chess game with standard notation support\"}],[\"$\",\"link\",\"4\",{\"rel\":\"manifest\",\"href\":\"/ChessApp/icons/manifest.json\",\"crossOrigin\":\"use-credentials\"}],[\"$\",\"meta\",\"5\",{\"name\":\"apple-mobile-web-app-capable\",\"content\":\"yes\"}],[\"$\",\"meta\",\"6\",{\"name\":\"apple-mobile-web-app-title\",\"content\":\"Chess App\"}],[\"$\",\"meta\",\"7\",{\"name\":\"apple-mobile-web-app-status-bar-style\",\"content\":\"default\"}],[\"$\",\"link\",\"8\",{\"rel\":\"shortcut icon\",\"href\":\"/ChessApp/icons/favicon-32.png\"}],[\"$\",\"link\",\"9\",{\"rel\":\"icon\",\"href\":\"/ChessApp/icons/favicon-16.png\",\"sizes\":\"16x16\",\"type\":\"image/png\"}],[\"$\",\"link\",\"10\",{\"rel\":\"icon\",\"href\":\"/ChessApp/icons/favicon-32.png\",\"sizes\":\"32x32\",\"type\":\"image/png\"}],[\"$\",\"link\",\"11\",{\"rel\":\"apple-touch-icon\",\"href\":\"/ChessApp/icons/apple-touch-icon.png\"}]]\n3:null\n"])</script></body></html>
+            " tabindex="0"><div class="text-sm font-semibold text-gray-900 dark:text-white mb-1">Purple Gold</div><div class="flex gap-1 justify-center"><div class="w-4 h-4 rounded bg-purple-100 dark:bg-purple-200"></div><div class="w-4 h-4 rounded bg-purple-700 dark:bg-purple-800"></div></div><div class="flex gap-1 justify-center mt-1"><span class="text-xs text-yellow-400">♔</span><span class="text-xs text-gray-400">♚</span></div></button></div></div><div class="bg-slate-100 dark:bg-slate-700 rounded-lg p-4"><h2 class="font-semibold text-gray-900 dark:text-white mb-3">Animation Speed</h2><div class="space-y-2"><div class="flex items-center justify-between mb-2"><span class="text-sm text-gray-700 dark:text-gray-300">Speed</span><span class="text-sm font-semibold text-gray-900 dark:text-white">100<!-- -->%</span></div><input type="range" min="0" max="200" step="10" class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-blue-600" style="background:linear-gradient(to right, rgb(37, 99, 235) 0%, rgb(37, 99, 235) 50%, rgb(229, 231, 235) 50%, rgb(229, 231, 235) 100%)" value="100"/><div class="flex justify-between text-xs text-gray-500 dark:text-gray-400"><span>0%</span><span>100%</span><span>200%</span></div><p class="text-xs text-gray-600 dark:text-gray-400 mt-2">Normal speed</p></div></div><button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">Reset Game</button></div></div></div></main><script src="/ChessApp/_next/static/chunks/webpack-9fd380a7ff604136.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0]);self.__next_f.push([2,null])</script><script>self.__next_f.push([1,"1:HL[\"/ChessApp/_next/static/css/5b5486a38c538a7b.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"2:I[2846,[],\"\"]\n4:I[9107,[],\"ClientPageRoot\"]\n5:I[4094,[\"648\",\"static/chunks/648-f70bf7e98f11bfdc.js\",\"673\",\"static/chunks/673-630881f48a8c3166.js\",\"931\",\"static/chunks/app/page-093b58a753a1c93a.js\"],\"default\",1]\n6:I[1454,[\"185\",\"static/chunks/app/layout-94d865a4b5f1ef6e.js\"],\"PWARegister\"]\n7:I[4707,[],\"\"]\n8:I[3490,[\"601\",\"static/chunks/app/error-bbac6c89a70fb814.js\"],\"default\"]\n9:I[6423,[],\"\"]\nb:I[1060,[],\"\"]\nc:[]\n0:[\"$\",\"$L2\",null,{\"buildId\":\"81yBjgqi7E8pdkx2SDVwY\",\"assetPrefix\":\"/ChessApp\",\"urlParts\":[\"\",\"\"],\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[[\"$L3\",[\"$\",\"$L4\",null,{\"props\":{\"params\":{},\"searchParams\":{}},\"Component\":\"$5\"}],null],null],null]},[[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/ChessApp/_next/static/css/5b5486a38c538a7b.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L6\",null,{}],[\"$\",\"$L7\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$8\",\"errorStyles\":[],\"errorScripts\":[],\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center p-8 bg-slate-800 rounded-lg shadow-lg\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-2xl font-bold text-white mb-4\",\"children\":\"404 - Page Not Found\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-400 mb-4\",\"children\":\"The page you're looking for doesn't exist.\"}],[\"$\",\"a\",null,{\"href\":\"/\",\"className\":\"px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors inline-block\",\"children\":\"Go back home\"}]]}]}],\"notFoundStyles\":[]}]]}]}]],null],null],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Chess App\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"A chess game with standard notation support\"}],[\"$\",\"link\",\"4\",{\"rel\":\"manifest\",\"href\":\"/ChessApp/icons/manifest.json\",\"crossOrigin\":\"use-credentials\"}],[\"$\",\"meta\",\"5\",{\"name\":\"apple-mobile-web-app-capable\",\"content\":\"yes\"}],[\"$\",\"meta\",\"6\",{\"name\":\"apple-mobile-web-app-title\",\"content\":\"Chess App\"}],[\"$\",\"meta\",\"7\",{\"name\":\"apple-mobile-web-app-status-bar-style\",\"content\":\"default\"}],[\"$\",\"link\",\"8\",{\"rel\":\"shortcut icon\",\"href\":\"/ChessApp/icons/favicon-32.png\"}],[\"$\",\"link\",\"9\",{\"rel\":\"icon\",\"href\":\"/ChessApp/icons/favicon-16.png\",\"sizes\":\"16x16\",\"type\":\"image/png\"}],[\"$\",\"link\",\"10\",{\"rel\":\"icon\",\"href\":\"/ChessApp/icons/favicon-32.png\",\"sizes\":\"32x32\",\"type\":\"image/png\"}],[\"$\",\"link\",\"11\",{\"rel\":\"apple-touch-icon\",\"href\":\"/ChessApp/icons/apple-touch-icon.png\"}]]\n3:null\n"])</script></body></html>
