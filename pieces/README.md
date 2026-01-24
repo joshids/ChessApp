@@ -5,6 +5,7 @@ This directory contains SVG files for chess pieces used in the chess app.
 ## Current Files
 
 - **chess-pieces.svg** - SVG file containing chess piece graphics
+- **cburnett/** - cBurnett piece set (PNG, from Wikimedia Commons). See `cburnett/README.md`.
 
 ## Usage in Next.js
 
