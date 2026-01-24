@@ -18,10 +18,15 @@ const getBasePath = () => {
 
 const basePath = getBasePath();
 
+// cBurnett piece set (PNG) – precache so cBurnett style works offline
+const CBURNETT_PIECES = ['wK','bK','wQ','bQ','wR','bR','wB','bB','wN','bN','wP','bP'];
+const cburnettUrls = CBURNETT_PIECES.map((name) => `${basePath}/pieces/cburnett/${name}.png`);
+
 // Files to cache
 const urlsToCache = [
   `${basePath}/`,
   `${basePath}/icons/manifest.json`,
+  ...cburnettUrls,
 ];
 
 // Install event - cache resources
