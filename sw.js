@@ -22,7 +22,7 @@ const basePath = getBasePath();
 const CBURNETT_PIECES = ['wK','bK','wQ','bQ','wR','bR','wB','bB','wN','bN','wP','bP'];
 const cburnettUrls = CBURNETT_PIECES.map((name) => `${basePath}/pieces/cburnett/${name}.png`);
 
-// Files to cache
+// Files to cache during install
 const urlsToCache = [
   `${basePath}/`,
   `${basePath}/icons/manifest.json`,
@@ -61,50 +61,142 @@ self.addEventListener('activate', (event) => {
   return self.clients.claim();
 });
 
+// Helper function to check if request is for HTML
+const isHTMLRequest = (request) => {
+  const url = new URL(request.url);
+  const acceptHeader = request.headers.get('accept') || '';
+  return acceptHeader.includes('text/html') || 
+         url.pathname === basePath + '/' || 
+         url.pathname === basePath + '/index.html' ||
+         (!basePath && (url.pathname === '/' || url.pathname === '/index.html'));
+};
+
+// Helper function to check if request is for a static asset
+const isStaticAsset = (request) => {
+  const url = new URL(request.url);
+  const pathname = url.pathname;
+  // Check for Next.js static assets
+  return pathname.includes('/_next/') ||
+         pathname.includes('/icons/') ||
+         pathname.endsWith('.js') ||
+         pathname.endsWith('.css') ||
+         pathname.endsWith('.png') ||
+         pathname.endsWith('.jpg') ||
+         pathname.endsWith('.jpeg') ||
+         pathname.endsWith('.gif') ||
+         pathname.endsWith('.svg') ||
+         pathname.endsWith('.woff') ||
+         pathname.endsWith('.woff2') ||
+         pathname.endsWith('.ttf') ||
+         pathname.endsWith('.eot');
+};
+
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-  const isHTML = event.request.headers.get('accept')?.includes('text/html') || 
-                 url.pathname === basePath + '/' || 
-                 url.pathname === basePath + '/index.html' ||
-                 (!basePath && (url.pathname === '/' || url.pathname === '/index.html'));
+  const request = event.request;
+  const url = new URL(request.url);
   
-  // For HTML pages, use network-first strategy to always get latest version
-  // This ensures new builds with new CSS/JS hashes are fetched immediately
-  if (isHTML) {
+  // Only handle GET requests
+  if (request.method !== 'GET') {
+    return;
+  }
+  
+  // Skip cross-origin requests
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+  
+  // For HTML pages, use network-first strategy with cache fallback
+  if (isHTMLRequest(request)) {
     event.respondWith(
-      fetch(event.request)
+      fetch(request)
         .then((response) => {
           // Cache the new HTML for offline use
           if (response.ok) {
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
+              cache.put(request, responseToCache);
             });
           }
           return response;
         })
         .catch(() => {
           // If network fails, try cache as fallback
-          return caches.match(event.request)
+          return caches.match(request)
             .then((cachedResponse) => {
-              return cachedResponse || new Response('Offline', { status: 503 });
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              // If no cached HTML, try to serve index.html from cache
+              return caches.match(`${basePath}/`).then((indexResponse) => {
+                return indexResponse || new Response('Offline - No cached content available', { 
+                  status: 503,
+                  headers: { 'Content-Type': 'text/plain' }
+                });
+              });
             });
         })
     );
     return;
   }
   
-  // For other resources (CSS, JS, images), use cache-first strategy
+  // For static assets (JS, CSS, images, fonts), use cache-first strategy
+  // This ensures offline functionality works with already downloaded code
+  if (isStaticAsset(request)) {
+    event.respondWith(
+      caches.match(request)
+        .then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          
+          // If not in cache, fetch from network and cache it
+          return fetch(request)
+            .then((response) => {
+              // Only cache successful responses
+              if (response.ok) {
+                const responseToCache = response.clone();
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, responseToCache);
+                });
+              }
+              return response;
+            })
+            .catch(() => {
+              // If network fails and not in cache, return a fallback
+              // For images, we could return a placeholder, but for JS/CSS we need to fail
+              return new Response('Resource not available offline', { 
+                status: 503,
+                headers: { 'Content-Type': 'text/plain' }
+              });
+            });
+        })
+    );
+    return;
+  }
+  
+  // For other requests (API calls, etc.), try network first, then cache
   event.respondWith(
-    caches.match(event.request)
+    fetch(request)
       .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
+        // Cache successful responses
+        if (response.ok) {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseToCache);
+          });
+        }
+        return response;
       })
       .catch(() => {
-        // If both fail, return offline page or fallback
-        return new Response('Offline', { status: 503 });
+        // Fallback to cache
+        return caches.match(request)
+          .then((cachedResponse) => {
+            return cachedResponse || new Response('Offline', { 
+              status: 503,
+              headers: { 'Content-Type': 'text/plain' }
+            });
+          });
       })
   );
 });
